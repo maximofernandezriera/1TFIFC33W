@@ -61,3 +61,40 @@
               }
               return resultado;
           }
+
+              public static int[][] multiplicar(int[][] m1, int[][] m2) {
+        int filas1 = m1.length;
+        int cols1 = m1[0].length;
+        int filas2 = m2.length;
+        int cols2 = m2[0].length;
+
+        // Verificar si las matrices pueden multiplicarse
+        if (cols1 != filas2) {
+            throw new IllegalArgumentException(
+                "El número de columnas de la primera matriz debe coincidir con el número de filas de la segunda");
+        }
+
+        int[][] producto = new int[filas1][cols2];
+
+        // Bucle para realizar la multiplicación
+        for (int i = 0; i < filas1; i++) {
+            for (int j = 0; j < cols2; j++) {
+                int prod = 0;
+                for (int k = 0; k < cols1; k++) {
+                    prod += m1[i][k] * m2[k][j];
+                }
+                producto[i][j] = prod;
+            }
+        }
+
+        return producto;
+    }
+
+    private static void pintarMatriz(int[][] matriz) {
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+                System.out.print(matriz[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
